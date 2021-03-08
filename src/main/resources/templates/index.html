@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Wire frame</title>
+
+    <h2>Contact us</h2>
+
+    <form th:action="@{/validate}" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>Kind of request</td>
+                <td>
+                <select class="form-control" id="requestType" name="requestType" th:value="${requestType}">
+                    <option th:each="type : ${requestTypes}"
+                            th:value="${type.value}"
+                            th:text="${type.value}"
+                            th:selected="${type.id} == ${selected}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Policy number</td>
+                <td><input name="policyNumber" th:value="${policyNumber}"/></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input name="name" th:value="${name}"/></td>
+            </tr>
+            <tr>
+                <td>Surname</td>
+                <td><input name="surname" th:value="${surname}"/></td>
+            </tr>
+            <tr>
+                <td>Your request</td>
+                <td><input name="yourRequest" th:value="${yourRequest}" th:type="text" th:maxlength="${yourRequestMaxChars}"/></td>
+                <td>Max chars: <span th:text="${yourRequestMaxChars}"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2"> <input type="submit" value="Send request" name="button"/></td>
+            </tr>
+        </table>
+    </form>
+
+    <table th:each="errorMessage : ${errorMessages}">
+        <tr>
+            <td th:text="${errorMessage}"></td>
+        </tr>
+    </table>
+
+</head>
+<body>
+
+</body>
+</html>
